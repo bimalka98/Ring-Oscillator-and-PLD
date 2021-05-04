@@ -1,0 +1,25 @@
+* D:\ACA\Github\Electronics3\Circuit_1_Dilmi\ringN.asc
+XX1 N002 0 N003 N001 not
+XX2 N004 0 N005 N001 not
+XX3 N006 0 N007 N001 not
+R1 N004 N003 1k
+R2 N006 N005 1k
+R3 N002 N007 1k
+C1 N004 0 1p
+C2 N006 0 1p
+C3 N002 0 1p
+VDD N001 0 5
+V§PULSE NC_01 0 PULSE(0 5 1p 1p 1p 0.5m 1m)
+
+* block symbol definitions
+.subckt not IN GND NOT VDD
+M1 NOT IN VDD VDD PMOS
+M2 NOT IN GND GND NMOS
+.ends not
+
+.model NMOS NMOS
+.model PMOS PMOS
+.lib C:\Users\Oshan\Documents\LTspiceXVII\lib\cmp\standard.mos
+.tran 5m
+.backanno
+.end
