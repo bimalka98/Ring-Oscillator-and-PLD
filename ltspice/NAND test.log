@@ -1,0 +1,40 @@
+Circuit: * D:\ACA\Sem4\Electronics 3\project\NAND test.asc
+
+Warning: Multiple definitions of model "aons66402" Type: Vdmos1
+Direct Newton iteration for .op point succeeded.
+Ignoring empty pin current: Ix(x1:gnd)
+Ignoring empty pin current: Ix(x1:gnd)
+Heightened Def Con from 0.002 to 0.002
+Heightened Def Con from 0.002 to 0.002
+Heightened Def Con from 0.002 to 0.002
+Heightened Def Con from 0.002 to 0.002
+Heightened Def Con from 0.002 to 0.002
+Heightened Def Con from 0.004 to 0.004
+Heightened Def Con from 0.004 to 0.004
+Heightened Def Con from 0.004 to 0.004
+Heightened Def Con from 0.004 to 0.004
+Heightened Def Con from 0.006 to 0.006
+Heightened Def Con from 0.006 to 0.006
+Heightened Def Con from 0.006 to 0.006
+Heightened Def Con from 0.006 to 0.006
+Heightened Def Con from 0.008 to 0.008
+Heightened Def Con from 0.008 to 0.008
+Heightened Def Con from 0.008 to 0.008
+
+Date: Sun Apr 25 13:39:31 2021
+Total elapsed time: 0.127 seconds.
+
+tnom = 27
+temp = 27
+method = modified trap
+totiter = 7433
+traniter = 7428
+tranpoints = 2265
+accept = 2048
+rejected = 233
+matrix size = 8
+fillins = 0
+solver = Normal
+Matrix Compiler1: 300 bytes object code size  0.1/0.1/[0.0]
+Matrix Compiler2: 636 bytes object code size  0.1/0.1/[0.1]
+

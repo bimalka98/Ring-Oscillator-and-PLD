@@ -1,0 +1,78 @@
+Circuit: * D:\ACA\Sem4\Electronics 3\project\PROM_test1.asc
+
+Warning: Multiple definitions of model "aons66402" Type: Vdmos1
+WARNING: Node X1:N001 is floating.
+WARNING: Node X1:N002 is floating.
+WARNING: Node X2:N001 is floating.
+WARNING: Node X2:N002 is floating.
+WARNING: Node X3:N001 is floating.
+WARNING: Node X3:N002 is floating.
+WARNING: Node AND_1:NOT_1:N001 is floating.
+WARNING: Node AND_1:NOT_1:N002 is floating.
+WARNING: Node AND_1:NOR_1:N001 is floating.
+WARNING: Node AND_2:NOT_1:N001 is floating.
+WARNING: Node AND_2:NOT_1:N002 is floating.
+WARNING: Node AND_2:NOR_1:N001 is floating.
+WARNING: Node AND_3:NOT_1:N001 is floating.
+WARNING: Node AND_3:NOT_1:N002 is floating.
+WARNING: Node AND_3:NOR_1:N001 is floating.
+WARNING: Node AND_4:NOT_1:N001 is floating.
+WARNING: Node AND_4:NOT_1:N002 is floating.
+WARNING: Node AND_4:NOR_1:N001 is floating.
+WARNING: Node AND_5:NOT_1:N001 is floating.
+WARNING: Node AND_5:NOT_1:N002 is floating.
+WARNING: Node AND_5:NOR_1:N001 is floating.
+WARNING: Node AND_6:NOT_1:N001 is floating.
+WARNING: Node AND_6:NOT_1:N002 is floating.
+WARNING: Node AND_6:NOR_1:N001 is floating.
+WARNING: Node AND_7:NOT_1:N001 is floating.
+WARNING: Node AND_7:NOT_1:N002 is floating.
+WARNING: Node AND_7:NOR_1:N001 is floating.
+WARNING: Node AND_8:NOT_1:N001 is floating.
+WARNING: Node AND_8:NOT_1:N002 is floating.
+WARNING: Node AND_8:NOR_1:N001 is floating.
+WARNING: Node X4:NOR_1:N001 is floating.
+WARNING: Node X4:NOT_1:N001 is floating.
+WARNING: Node X4:NOT_1:N002 is floating.
+WARNING: Node X12:NOR_1:N001 is floating.
+WARNING: Node X12:NOT_1:N001 is floating.
+WARNING: Node X12:NOT_1:N002 is floating.
+WARNING: Node X13:NOR_1:N001 is floating.
+WARNING: Node X13:NOT_1:N001 is floating.
+WARNING: Node X13:NOT_1:N002 is floating.
+WARNING: Node X14:NOR_1:N001 is floating.
+WARNING: Node X14:NOT_1:N001 is floating.
+WARNING: Node X14:NOT_1:N002 is floating.
+WARNING: Node X15:NOR_1:N001 is floating.
+WARNING: Node X15:NOT_1:N001 is floating.
+WARNING: Node X15:NOT_1:N002 is floating.
+WARNING: Node X16:NOR_1:N001 is floating.
+WARNING: Node X16:NOT_1:N001 is floating.
+WARNING: Node X16:NOT_1:N002 is floating.
+WARNING: Node X5:NOR_1:N001 is floating.
+WARNING: Node X5:NOT_1:N001 is floating.
+WARNING: Node X5:NOT_1:N002 is floating.
+
+WARNING: Less than two connections to node A.  This node is used by V2.
+WARNING: Less than two connections to node B.  This node is used by V3.
+WARNING: Less than two connections to node C.  This node is used by V4.
+Direct Newton iteration for .op point succeeded.
+
+Date: Mon May 03 20:07:53 2021
+Total elapsed time: 0.384 seconds.
+
+tnom = 27
+temp = 27
+method = modified trap
+totiter = 3972
+traniter = 3930
+tranpoints = 1966
+accept = 1897
+rejected = 69
+matrix size = 131
+fillins = 194
+solver = Normal
+Thread vector: 69.8/14.7[8] 39.0/8.8[8] 9.6/5.5[8] 0.8/2.5[1]  2592/500
+Matrix Compiler1: 31.77 KB object code size  12.4/8.7/[4.1]
+Matrix Compiler2: 19.52 KB object code size  5.2/6.4/[0.9]
+

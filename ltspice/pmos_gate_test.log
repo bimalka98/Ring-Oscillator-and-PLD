@@ -1,0 +1,26 @@
+Circuit: * D:\ACA\Sem4\Electronics 3\project\pmos_gate_test.asc
+
+Warning: Multiple definitions of model "aons66402" Type: Vdmos1
+WARNING: Node X1:X1:N001 is floating.
+WARNING: Node X1:X1:N002 is floating.
+
+WARNING: Less than two connections to node OUT.  This node is used by M:X1:1.
+Direct Newton iteration for .op point succeeded.
+
+Date: Sun May 02 20:37:39 2021
+Total elapsed time: 0.125 seconds.
+
+tnom = 27
+temp = 27
+method = modified trap
+totiter = 7529
+traniter = 7505
+tranpoints = 2638
+accept = 2400
+rejected = 238
+matrix size = 10
+fillins = 0
+solver = Normal
+Matrix Compiler1: 418 bytes object code size  0.1/0.1/[0.0]
+Matrix Compiler2: 900 bytes object code size  0.1/0.1/[0.1]
+

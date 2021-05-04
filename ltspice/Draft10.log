@@ -1,0 +1,23 @@
+Circuit: * D:\ACA\Sem4\Electronics 3\project\Draft10.asc
+
+Warning: Multiple definitions of model "aons66402" Type: Vdmos1
+WARNING: Less than two connections to node OUT.  This node is used by M1.
+.OP point found by inspection.
+
+Date: Sun May 02 21:38:13 2021
+Total elapsed time: 0.054 seconds.
+
+tnom = 27
+temp = 27
+method = modified trap
+totiter = 4238
+traniter = 4238
+tranpoints = 2003
+accept = 1924
+rejected = 79
+matrix size = 5
+fillins = 0
+solver = Normal
+Matrix Compiler1: 132 bytes object code size  0.0/0.0/[0.0]
+Matrix Compiler2: off  [0.0]/0.0/0.0
+
