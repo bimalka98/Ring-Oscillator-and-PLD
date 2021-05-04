@@ -1,0 +1,116 @@
+%  -----------------------------------------------------------------------------
+%  Author         : Bimalka Piyaruwan Thalagala
+%  GitHub         : https://github.com/bimalka98
+%  Date Created   : 01.09.2020
+%  Last Modified  : 13.09.2020
+%  -----------------------------------------------------------------------------
+
+\documentclass[a4paper,11pt]{article}%,twocolumn
+\input{settings/packages}
+\input{settings/page}
+\input{settings/macros}
+\usepackage[ framed, numbered]{matlab-prettifier}%framed,%
+\usepackage{listings}
+\usepackage{pythonhighlight}
+
+
+\begin{document}
+
+\input{content/title_page}
+\pagebreak
+
+\begin{table}[!h]
+		\centering
+		\begin{tabular}{l c l}
+		\textbf{Name} & \textbf{Index} & \textbf{Contribution}\\
+	Thalagala B.P. & 180631J & \\
+		\end{tabular}
+		\caption{Contributions of each member}
+\end{table}
+
+
+%[09:52, 03/05/2021] TKDVithurabimanMora: ELECTRONICS 3
+%
+%
+%
+%Submission link will be provided soon.
+%
+%You are suppose to submit the following files in a zip folder along with the group number. The group number will be provided soon
+%
+%1 A report 
+%-- the index number and group number as cover page
+%-- 2nd page with contributions of each member
+%-- Waveform, results, discussion (problems faced and how to overcome them , mathematical calculations if any)
+%
+%2. Simulation files indicating the question number
+%
+%
+%Deadline is on this Friday 7th  of May
+%
+%Viva may be postponed according to sir
+%[10:12, 03/05/2021] TKDVithurabimanMora: As we discussed you have to submit your reports for the following part
+%on or before 7th May 2021.
+%
+%Circuit 1: Parasitic effect in Timing analysis (evaluated to 15 marks)
+%Design a 3 stage (3 inverters) ring oscillator. Find the correlation of
+%the parasitic effect in the oscillation period.
+%
+%Circuit 2: PLD ( evaluated to 35 marks)
+%Part 1: Design a programable logic block to configure it as a 'NAND' or
+%a 'NOR' gate using a single selection bit. (10 marks)
+%Part 2: Design a single switch matrix using six pass transistors. (10
+%marks)
+%Part 3: Design a PLD that can be used to design any 3 input
+%combinational circuit. (15 marks)
+%
+%You have to submit a report including task division among the group
+%members, waveforms and mathematics calculations for each circuit
+%including discussions.
+%
+%Submission link - https://dms.uom.lk/s/zHXCsnbNcmC72B6
+%("modified time" will be considered as the submission time. Therefore,
+%do not make any changes after the given deadline.)
+%
+%Thank you.
+
+
+
+
+
+\tableofcontents
+
+\pagebreak
+\section{Parasitic effect in Timing analysis}
+\textbf{Objective}: \textit{Design a 3 stage (3 inverters) ring oscillator. Find the correlation of the parasitic effect in the oscillation period.}\\
+
+Ring oscillator is a unstable, closed loop device with a negative feedback. It consists of an \textbf{\textit{odd number of identical NOT gates}} and its output oscillates between\textbf{\textit{ two voltage levels}} identified as high nad low. The period of oscillation($T$) of a ring oscillaotr can be expressed as follows where $n$ is the number of cascaded NOT gates and $\tau_{PD}$ is the propagation delay of a single inverter.
+
+\[
+T = 2.n.\tau_{PD}
+\]
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.5]{figures/plt1}
+
+\end{figure}
+
+
+\pagebreak
+\section{PLD}
+\subsection{Part 1}
+\textbf{Objective}: \textit{Design a programable logic block to configure it as a `NAND' or a `NOR' gate using a single selection bit.}\\
+
+\subsection{Part 2}
+\textbf{Objective}: \textit{Design a single switch matrix using six pass transistors.}\\
+
+\subsection{Part 3}
+\textbf{Objective}: \textit{Design a PLD that can be used to design any 3 input
+combinational circuit.}\\
+
+
+%\bibliographystyle{plain}
+%\bibliography{refer}
+
+%---------------------------------------------------------------------------
+\end{document}
