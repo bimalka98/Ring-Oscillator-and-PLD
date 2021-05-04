@@ -83,7 +83,8 @@
 \section{Parasitic effect in Timing analysis}
 \textbf{Objective}: \textit{Design a 3 stage (3 inverters) ring oscillator. Find the correlation of the parasitic effect in the oscillation period.}\\
 
-Ring oscillator is a unstable, closed loop device with a negative feedback. It consists of an \textbf{\textit{odd number of identical NOT gates}} and its output oscillates between\textbf{\textit{ two voltage levels}} identified as high nad low. The period of oscillation($T$) of a ring oscillaotr can be expressed as follows where $n$ is the number of cascaded NOT gates and $\tau_{PD}$ is the propagation delay of a single inverter.
+\subsection{System Design}
+Ring oscillator is a unstable, closed loop device with a negative feedback. It consists of an \textbf{\textit{odd number of identical inverters (NOT gates)}} and its output oscillates between\textbf{\textit{ two voltage levels}} identified as high nad low. The period of oscillation($T$) of a ring oscillaotr can be expressed as follows where $n$ is the number of cascaded NOT gates and $\tau_{PD}$ is the propagation delay of a single inverter.
 
 \[
 T = 2.n.\tau_{PD}
@@ -91,7 +92,8 @@ T = 2.n.\tau_{PD}
 
 \begin{figure}[!h]
 \centering
-\includegraphics[scale=0.5]{figures/plt1}
+\includegraphics[scale=0.6]{figures/cct1plot1}
+\caption{Waveform for Voltage of 3 stages CMOS Ring Oscillator}
 
 \end{figure}
 
