@@ -9,8 +9,9 @@
 \input{settings/packages}
 \input{settings/page}
 \input{settings/macros}
-\usepackage[siunitx, RPvoltages]{circuitikz}
 \usepackage{float}
+\usepackage{circuitikz}
+
 
 \begin{document}
 
@@ -39,12 +40,32 @@
 \textbf{Objective}: \textit{Design a 3 stage (3 inverters) ring oscillator. Find the correlation of the parasitic effect in the oscillation period.}\\
 
 \subsection{System Design}
-Ring oscillator is a unstable, closed loop device with a negative feedback. It consists of an \textbf{\textit{odd number of identical inverters (NOT gates)}} and its output oscillates between\textbf{\textit{ two voltage levels}} identified as high and low. The period of oscillation($T$) of a ring oscillaotr can be expressed as follows where $n$ is the number of cascaded NOT gates and $\tau_{PD}$ is the propagation delay of a single inverter.
+Ring oscillator consists of an \textbf{\textit{odd number of identical inverters (NOT gates)}} and its output oscillates between\textbf{\textit{ two voltage levels}} identified as high and low. The period of oscillation($T$) of a ring oscillator can be expressed as follows where $n$ is the number of cascaded NOT gates and $\tau_{PD}$ is the propagation delay of a single inverter.
 
 \[
 T = 2.n.\tau_{PD}
 \]
 
+Basic structure of a ring oscillator can be depicted as follows.
+
+\begin{figure}[H]
+	\centering
+	\begin{circuitikz}
+ \draw	 (1,0) node[ieeestd not port] (not1) {}
+		 (3,0) node[ieeestd not port] (not2) {}
+		 (5,0) node[ieeestd not port] (not3) {}
+		 (0,0) -- (not1.in)
+		 (not2.in) -- (not1.out)
+		 (not3.in) -- (not2.out)
+		 (not3.out) -- (6,0)
+		 (not1.in) -- (0,0)
+		 (6,0) -- (6,-1.5) -- (0,-1.5) -- (0,0) 
+		 ;
+	\end{circuitikz}
+	\caption{Basic structure of a 3 stage ring oscillator}
+\end{figure}
+
+This can be implemented using enhanced NMOS and PMOS as illustrated in the following schematic. Each inverter consists of   
 
 \begin{figure}[H]
 \centering
@@ -57,14 +78,14 @@ T = 2.n.\tau_{PD}
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.5]{figures/cct1plot1}
-	\caption{Waveform for Voltages of 3 stages enhanvced CMOS Ring Oscillator}
+	\caption{Waveform for Voltages of 3 stages enhanced CMOS Ring Oscillator}
 \end{figure}
 
 
 \pagebreak
 \section{PLD}
 \subsection{Part 1}
-\textbf{Objective}: \textit{Design a programable logic block to configure it as a `NAND' or a `NOR' gate using a single selection bit.}\\
+\textbf{Objective}: \textit{Design a programmable logic block to configure it as a `NAND' or a `NOR' gate using a single selection bit.}\\
 
 First a truth table is drawn for this part considering a single selection bit (S) with two inputs (A, B) such that S=0 for ‘NAND’ and S=1 for ‘NOR’ operations respectively.
 \begin{table}[H]
@@ -109,10 +130,7 @@ Then the relevant logic expression was obtained using a karnaugh map and it was 
 
 
 
-So, the resultant combinational logic circuit is as follows. (2 NANDs, 2 NORs, 3 NOTs)
-
-
-For the implementation of this circuit; ‘NOT’, ‘NAND’, and 'NOR' gates were designed using 'NMOS' and 'PMOS' transistors. Their schematics in LTspice are depicted below.
+So, the resultant combinational logic circuit is as follows. (2 NANDs, 2 NORs, 3 NOTs) For the implementation of this circuit; ‘NOT’, ‘NAND’, and 'NOR' gates were designed using 'NMOS' and 'PMOS' transistors. Their schematics in LTspice are depicted below.
 
 \begin{figure}[H]
 	\centering
@@ -133,13 +151,13 @@ Finally, the PLD block is designed using the above gates and the waveforms were 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.4]{figures/2part1/cct.pdf}
+	\includegraphics[scale=0.5]{figures/2part1/cct.pdf}
 	\caption{Circuit designed using logic blocks}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.4]{figures/2part1/block.pdf}
+	\includegraphics[scale=0.5]{figures/2part1/block.pdf}
 	\caption{Designed PLD block}
 \end{figure}
 
@@ -150,7 +168,7 @@ Finally, the PLD block is designed using the above gates and the waveforms were 
 	\caption{Waveforms for inputs and output of PLD }
 \end{figure}
 
-
+\hrule
 \subsection{Part 2}
 \textbf{Objective}: \textit{Design a single switch matrix using six pass transistors.}\\
 
@@ -171,7 +189,7 @@ Then using six such transistors, the single switch matrix was designed and the s
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.4]{figures/2part2/switch_mat.pdf}
+	\includegraphics[scale=0.5]{figures/2part2/switch_mat.pdf}
 	\caption{Schematic diagram of the single switch matrix}
 \end{figure}
 \begin{figure}[H]
@@ -207,7 +225,7 @@ Finally the functionality of the circuit was checked by giving pulses to left, r
 \end{figure}
 
 
-\pagebreak
+\hrule
 \subsection{Part 3}
 \textbf{Objective}: \textit{Design a PLD that can be used to design any 3 input
 combinational circuit.}\\
