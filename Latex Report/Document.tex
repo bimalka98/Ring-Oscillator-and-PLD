@@ -239,7 +239,7 @@ Before building the PLD the AND plane and OR plane should be created. For the fi
 
 \[ A.B.C = \overline{\overline{A.B.C}} = \overline{\overline{A.B} + \overline{C}} \]
 
-Using this expression we constructed the 3 input AND gates using a minimum number of logic gates.
+Using this expression we constructed the 3 input AND gates using a minimum number of logic gates.\\
 
 \begin{figure}[H]
 	\centering
@@ -247,6 +247,58 @@ Using this expression we constructed the 3 input AND gates using a minimum numbe
 	\caption{Implementing the three-input AND gate using NOR, AND, and NOT gates.}
 \end{figure}
 
+Using seven separate OR gates( 7 NOR gates + 7 NOT gates) to implement the OR plane, increases complexity and the latency of the circuit by a huge factor. Instead, we can simplify the expression and use a minimum number of gates as below.\\
+
+\[
+\begin{split}
+ & = S_1 + S_2 + S_3 + S_4 + S_5 + S_6 + S_7 + S_8\\
+ & = \overline{\overline{S_1 + S_2 + S_3 + S_4 + S_5 + S_6 + S_7 + S_8}}\\
+ & = \overline{\overline{\left( S_1 + S_2 + S_3 + S_4 \right)}. \overline{\left( S_5 + S_6 + S_7 + S_8 \right)}}\\
+  & = \overline{\overline{\left( S_1 + S_2\right)} .\overline{\left( S_3 + S_4 \right)}. \overline{\left( S_5 + S_6\right)}.  \overline{\left( S_7 + S_8 \right)}}\\
+    & = \overline{\overline{\left( S_1 + S_2\right)} .\overline{\left( S_3 + S_4 \right)}}+ \overline{\overline{\left( S_5 + S_6\right)}.  \overline{\left( S_7 + S_8 \right)}}\\
+    & = \overline{\overline{ \overline{\overline{\left( S_1 + S_2\right)} .\overline{\left( S_3 + S_4 \right)}}+ \overline{\overline{\left( S_5 + S_6\right)}.  \overline{\left( S_7 + S_8 \right)}} }}
+\end{split}
+\]
+
+Using this expression we were able to build an OR plane with a minimum number of components as below.\\
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{figures/Figure333.pdf}
+	\caption{Implementing the OR plane}
+\end{figure}
+
+
+Instead of using a total of 14 logic gates, now we have implemented it using only 8 logic gates. This reduces the latency and complexity by a huge factor.\\
+
+PROM is constructed as below\\
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{figures/Figure334.pdf}
+	\caption{PROM circuit}
+\end{figure}
+
+
+We have used nmos transistors as switches which choose, which minterms are taken into the sum of products. We didn’t choose passgates as switches as it increases the complexity and the latency of the circuit.\\ 
+
+We tested the circuit for different combinational circuits by configuring Si switches. Below we have configured the PROM as a simple NOR gate.\\
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{figures/Figure335.pdf}
+	\caption{PROM configured as a NOR gate}
+\end{figure}
+
+Results were as below,
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{figures/Figure336.pdf}
+	\caption{Results of PROM configured as a NOR gate}
+\end{figure}
+
+We can observe that the PROM is functioning correctly.
 
 %\bibliographystyle{plain}
 %\bibliography{refer}
