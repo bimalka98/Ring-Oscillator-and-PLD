@@ -10,68 +10,26 @@
 \input{settings/page}
 \input{settings/macros}
 \usepackage[siunitx, RPvoltages]{circuitikz}
+\usepackage{float}
 
 \begin{document}
 
 \input{content/title_page}
 \pagebreak
 
-\begin{table}[!h]
+\begin{table}[H]
 		\centering
 		\begin{tabular}{l c l}
 		\textbf{Name} & \textbf{Index} & \textbf{Contribution}\\
+
+	Caldera H. D. J. &  180079X& \\
+	Oshan J. W. P.    & 180437U& \\
 	Thalagala B.P. & 180631J & \\
+
+
 		\end{tabular}
 		\caption{Contributions of each member}
 \end{table}
-
-
-%[09:52, 03/05/2021] TKDVithurabimanMora: ELECTRONICS 3
-%
-%
-%
-%Submission link will be provided soon.
-%
-%You are suppose to submit the following files in a zip folder along with the group number. The group number will be provided soon
-%
-%1 A report 
-%-- the index number and group number as cover page
-%-- 2nd page with contributions of each member
-%-- Waveform, results, discussion (problems faced and how to overcome them , mathematical calculations if any)
-%
-%2. Simulation files indicating the question number
-%
-%
-%Deadline is on this Friday 7th  of May
-%
-%Viva may be postponed according to sir
-%[10:12, 03/05/2021] TKDVithurabimanMora: As we discussed you have to submit your reports for the following part
-%on or before 7th May 2021.
-%
-%Circuit 1: Parasitic effect in Timing analysis (evaluated to 15 marks)
-%Design a 3 stage (3 inverters) ring oscillator. Find the correlation of
-%the parasitic effect in the oscillation period.
-%
-%Circuit 2: PLD ( evaluated to 35 marks)
-%Part 1: Design a programable logic block to configure it as a 'NAND' or
-%a 'NOR' gate using a single selection bit. (10 marks)
-%Part 2: Design a single switch matrix using six pass transistors. (10
-%marks)
-%Part 3: Design a PLD that can be used to design any 3 input
-%combinational circuit. (15 marks)
-%
-%You have to submit a report including task division among the group
-%members, waveforms and mathematics calculations for each circuit
-%including discussions.
-%
-%Submission link - https://dms.uom.lk/s/zHXCsnbNcmC72B6
-%("modified time" will be considered as the submission time. Therefore,
-%do not make any changes after the given deadline.)
-%
-%Thank you.
-
-
-
 
 
 \tableofcontents
@@ -88,11 +46,18 @@ T = 2.n.\tau_{PD}
 \]
 
 
-\begin{figure}[!h]
+\begin{figure}[H]
 \centering
-\includegraphics[scale=0.6]{figures/cct1plot1}
-\caption{Waveform for Voltage of 3 stages CMOS Ring Oscillator}
+\includegraphics[scale=0.6]{figures/cct1plot2}
+\caption{3 stages enhanced CMOS Ring Oscillator}
+\end{figure}
 
+\subsection{simulation Results and Discussion}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{figures/cct1plot1}
+	\caption{Waveform for Voltages of 3 stages enhanvced CMOS Ring Oscillator}
 \end{figure}
 
 
@@ -101,12 +66,186 @@ T = 2.n.\tau_{PD}
 \subsection{Part 1}
 \textbf{Objective}: \textit{Design a programable logic block to configure it as a `NAND' or a `NOR' gate using a single selection bit.}\\
 
+First a truth table is drawn for this part considering a single selection bit (S) with two inputs (A, B) such that S=0 for ‘NAND’ and S=1 for ‘NOR’ operations respectively.
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c |c| c| c|}
+		\hline
+		S & A & B & F \\\hline
+		0 & 0 & 0 & 1 \\
+		0 & 0 & 1 & 1 \\
+		0 & 1 & 0 & 1 \\
+		0 & 1 & 1 & 0 \\\hline
+		1 & 0 & 0 & 1 \\
+		1 & 0 & 1 & 0 \\
+		1 & 1 & 0 & 0 \\
+		1 & 1 & 1 & 0 \\\hline\hline
+	\end{tabular}
+\caption{The truth table}
+\end{table}
+
+Then the relevant logic expression was obtained using a karnaugh map and it was further simplified to obtain the combination of 'NAND' and 'NOR' operations.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c |c| c| c| c}
+		S\textbackslash AB & 00 & 01 & 11 & 10\\\hline
+		0 & 1 & 1 & 0 & 1\\\hline
+		1 & 1 & 0  &0  & 0
+	\end{tabular}
+	\caption{Karnough Map for the above truth table}
+\end{table}
+
+\[
+\begin{split}
+	F &= \overline{S}.\overline{A} + \overline{S}.\overline{B} + \overline{A}.\overline{B}\\
+	&= \overline{S}.(\overline{A}+\overline{B}) + \overline{A}.\overline{B}\\
+	&= \overline{S}.(\overline{A.B}) + \overline{A+B}\\
+	&= \overline{S+A.B} + \overline{A+B}\\
+	& = \overline{(S + A.B).(A+B)}\\
+	& =\overline{(S + \overline{\overline{A.B}}).(\overline{\overline{A+B}})}
+\end{split}
+\]
+
+
+
+So, the resultant combinational logic circuit is as follows. (2 NANDs, 2 NORs, 3 NOTs)
+
+
+For the implementation of this circuit; ‘NOT’, ‘NAND’, and 'NOR' gates were designed using 'NMOS' and 'PMOS' transistors. Their schematics in LTspice are depicted below.
+
+\begin{figure}[H]
+	\centering
+	\subfigure[Schematic of NOT gate]
+	{ \includegraphics[scale=0.18]{figures/2part1/NOT.pdf}
+	}\hfill
+	\subfigure[Schematic of NAND gate]
+	{ \includegraphics[scale=0.18]{figures/2part1/NAND.pdf}
+	}\hfill
+	\subfigure[Schematic of NOR gate]
+	{ \includegraphics[scale=0.18]{figures/2part1/NOR.pdf}
+	}
+\caption{Basic Gates in the CMOS logic}
+\end{figure}
+%
+%
+Finally, the PLD block is designed using the above gates and the waveforms were obtained.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{figures/2part1/cct.pdf}
+	\caption{Circuit designed using logic blocks}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{figures/2part1/block.pdf}
+	\caption{Designed PLD block}
+\end{figure}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{figures/2part1/wave.pdf}
+	\caption{Waveforms for inputs and output of PLD }
+\end{figure}
+
+
 \subsection{Part 2}
 \textbf{Objective}: \textit{Design a single switch matrix using six pass transistors.}\\
 
+In this part, the single switch matrix is needed to be designed using six pass transistors. So as the first step, a pass transistor was designed and its performance was checked. Simply an 'NMOS' transistor is fed with a switch, could be used for this task. So when the switch is on, the input signal will be received at the output (Threshold voltage is considering as zero since an ideal nmos). Also capacitors were used to ground the high impedance state which occurred when the NMOS is OFF.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{figures/2part2/pass_ttr.pdf}
+	\caption{Schematic diagram of the pass transistor}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{figures/2part2/pass_wave.pdf}
+	\caption{Waveform of the pass transistor}
+\end{figure}
+
+Then using six such transistors, the single switch matrix was designed and the schematic diagram of it is shown below.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{figures/2part2/switch_mat.pdf}
+	\caption{Schematic diagram of the single switch matrix}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{figures/2part2/block.pdf}
+	\caption{Designed single switch matrix block}
+\end{figure}
+
+Finally the functionality of the circuit was checked by giving pulses to left, right, top, and bottom corners separately and switching on the switches at different periods.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{figures/2part2/top.pdf}
+	\caption{Waveforms when the top terminal is fed with a pulse}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{figures/2part2/left.pdf}
+	\caption{Waveforms when the left terminal is fed with a pulse}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{figures/2part2/right.pdf}
+	\caption{Waveforms when the right terminal is fed with a pulse}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{figures/2part2/bottom.pdf}
+	\caption{Waveforms when the bottom terminal is fed with a pulse}
+\end{figure}
+
+
+\pagebreak
 \subsection{Part 3}
 \textbf{Objective}: \textit{Design a PLD that can be used to design any 3 input
 combinational circuit.}\\
+
+The task was to design a PLD circuit capable of implementing any three input combinational circuit. The truth-table of any three input combinational circuits will be as below.\\
+
+\begin{table}[H]
+\centering
+	\begin{tabular}{|c |c| c| c|}
+		\hline
+		A&B&C& Output\\\hline
+	0 & 0 & 0 & $S_1 $ \\
+	0 & 0 & 1 & $S_2$ \\
+	0 & 1 & 0 & $S_3$ \\
+	0 & 1 & 1 & $S_4$ \\
+	1 & 0 & 0 & $S_5$ \\
+	1 & 0 & 1 & $S_6$ \\
+	1 & 1 & 0 & $S_7$ \\
+	1 & 1 & 1 & $S_8$ \\\hline\hline
+	\end{tabular}
+\caption{The truth-table of any three input combinational circuit}
+\end{table}
+
+Outputs $S_1$, $S_2$,...., $S_8$ differ with the combinational circuit. So we can write an expression for the combinational logic circuit using the 8 minterms. Which minterms to be selected differ according to the S1, S2,...., S8. If any $S_i$ is 1 then the corresponding minterm is taken into the sum of products expression. If Si is 0 that corresponding minterm is discarded.\\
+
+So we can build the PLD with a fixed AND plane which has all eight minterms and a programmable OR plane which can be programmed using Si terms. So our PLD becomes a PROM.\\
+
+Before building the PLD the AND plane and OR plane should be created. For the fixed AND plane, we need eight minterms. A minterm is a product of any three of $A$, $\overline{A}$, $B$, $\overline{B}$, $C$ or $\overline{C}$. So we need three input and gate. We configured a three-input AND gate using NAND, NOR, and NOT gates as below for better efficiency.\\
+
+\[ A.B.C = \overline{\overline{A.B.C}} = \overline{\overline{A.B} + \overline{C}} \]
+
+Using this expression we constructed the 3 input AND gates using a minimum number of logic gates.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{figures/Figure332.pdf}
+	\caption{Implementing the three-input AND gate using NOR, AND, and NOT gates.}
+\end{figure}
 
 
 %\bibliographystyle{plain}
