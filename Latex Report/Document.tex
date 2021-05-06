@@ -40,11 +40,13 @@
 \textbf{Objective}: \textit{Design a 3 stage (3 inverters) ring oscillator. Find the correlation of the parasitic effect in the oscillation period.}\\
 
 \subsection{System Design}
-Ring oscillator consists of an \textbf{\textit{odd number of identical inverters (NOT gates)}} and its output oscillates between\textbf{\textit{ two voltage levels}} identified as high and low. The period of oscillation($T$) of a ring oscillator can be expressed as follows where $n$ is the number of cascaded NOT gates and $\tau_{PD}$ is the propagation delay of a single inverter.
+Ring oscillator is a combination of delay stages arranged in series to form a closed loop chain. It consists of an \textbf{\textit{odd number of identical inverters (NOT gates)}} and it has an periodically oscillating output. The period of oscillation($T$) of a ring oscillator can be expressed as follows where $n$ is the number of cascaded NOT gates and $\tau_{d}$ is the propagation delay of a single inverter(per stage).
 
 \[
-T = 2.n.\tau_{PD}
+T = 2.n.\tau_{d} \hspace{5mm}\Longrightarrow ~ Oscillation~frequency = \frac{1}{2.n.\tau_{d}}
 \]
+
+Following figure illustrates the input output characteristic of an ideal inverter. There, output is changed as soon as the input signal changes.
 
 \begin{figure}[H]
 	\centering
@@ -53,8 +55,13 @@ T = 2.n.\tau_{PD}
 	}\hfill
 	\subfigure[Ideal inverter Output]
 	{ \includegraphics[scale=0.25]{figures/cct1plot6}
-	}\\
-	\subfigure[Real Inverter Model]
+	}
+\end{figure}
+
+Whereas the below figure illustrates the input output characteristic of a single stage of a general Ring Oscillator. It can be observed that finite amount of time delay is required for output to be valid for a given valid input.
+
+\begin{figure}[H]
+	\subfigure[Inverter Model with additional delay element]
 	{ \includegraphics[scale=0.25]{figures/cct1plot3}
 	}\hfill
 	\subfigure[Effect of Parasitic Capacitance]
@@ -87,17 +94,20 @@ This can be implemented using enhanced NMOS and PMOS as illustrated in the follo
 
 
 
+
 \subsection{simulation Results and Discussion}
+
+Following ring oscillator schematic, which was taken from\cite{enwiki:1009565738}  is used to simulate the effect of parasitic capacitance of the CMOS on the period of the output waveform.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.6]{figures/cct1plot2}
+	\includegraphics[scale=0.5]{figures/cct1plot1}
 	\caption{3 stages enhanced CMOS Ring Oscillator}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.5]{figures/cct1plot1}
+	\includegraphics[scale=0.5]{figures/cct1plot2}
 	\caption{Waveform for Voltages of 3 stages enhanced CMOS Ring Oscillator}
 \end{figure}
 
@@ -338,8 +348,11 @@ Results were as below,
 
 We can observe that the PROM is functioning correctly.
 
-%\bibliographystyle{plain}
-%\bibliography{refer}
-
+\vfill
+\hrule
+{\scriptsize
+\bibliographystyle{plain}
+\bibliography{refer}
+}
 %---------------------------------------------------------------------------
 \end{document}
