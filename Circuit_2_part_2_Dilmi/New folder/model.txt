@@ -1,4 +1,4 @@
-.MODEL N_1u NMOS LEVEL  = 3                  
+.MODEL NMOS_N NMOS LEVEL  = 3                  
 
 + TOX    = 200E-10         NSUB   = 1E17            GAMMA  = 0.5          
 
