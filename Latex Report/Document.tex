@@ -47,7 +47,7 @@ T = 2.n.\tau_{d} \hspace{5mm}\Longrightarrow ~ Oscillation~frequency = \frac{1}{
 \]
 \vspace{5mm}
 
-Following figure illustrates the input output characteristic of an ideal inverter. There, output is changed as soon as the input signal changes.
+Following figure illustrates the input output characteristic of an ideal inverter. There, output is changed as soon as the input signal changes. That is no propagation delay.
 
 \begin{figure}[H]
 	\centering
@@ -59,7 +59,14 @@ Following figure illustrates the input output characteristic of an ideal inverte
 	}
 \end{figure}
 
-Whereas the below figure illustrates the input output characteristic of a single stage of a general Ring Oscillator. It can be observed that finite amount of time is required for output to be valid for a given valid input. This model has  been used to find the parasitic effect on the oscillation period as it is more realistic.
+Whereas the below figure illustrates the input output characteristic of a single stage of a general real inverter. It can be observed that finite amount of time is required for output to be valid for a given valid input. This model has  been used to find the parasitic effect on the oscillation period as it is realistic. For this experiment an NMOS and PMOS models were custom designed and Parameters of those models are as follows.
+
+{\scriptsize
+\begin{verbatim}
+	
+	.MODEL CMOSP PMOS KP=96u VTO=0.906 LAMBDA=0.01 TOX=21n GAMMA=0.486 CGDO=54p CGSO=54p CGBO=336p
+	.MODEL CMOSN NMOS KP=96u VTO=0.786 LAMBDA=0.01 TOX=21n GAMMA=0.586 CGDO=402p CGSO=402p CGBO=362p
+\end{verbatim}}
 
 \begin{figure}[H]
 	\centering
@@ -93,14 +100,14 @@ Basic structure of a ring oscillator can be depicted as follows using logic gate
 
 
 
-This can be implemented using NMOS, PMOS transistors and additional delay elements(capacitors) as illustrated in the following schematic. Each inverter consists of one PMOS, one NMOS and a single delay element placed at the output of each stage as mentioned previously to introduce the parasitic effects.
+A genral Ring Oscillator can be implemented using NMOS, PMOS transistors and additional delay elements(capacitors). But as the objective is to find the correlation between parasitic effect and oscillation period, the additional delay elements were not used and only the internal capacitance were taken in to account. Each inverter consists of one PMOS and one NMOS named as CMOSP and CMOSN.
 
 
 \subsection{Simulation Results and Discussion}
 
-Following ring oscillator schematic, which was taken from\cite{article}  has been used to simulate the effect of parasitic capacitance on the period of the output waveform. Simulation was run for $500~ns$ time intervals({\tt .tran 500}) for 61 different capacitor values starting form 1 pF to 1 F.\\
+Following ring oscillator schematic has been used to simulate the effect of parasitic capacitance on the period of the output waveform. Simulation was run for $2~\mu s$ time intervals({\tt .tran 2u}) for 18 different gate source capacitor values starting form 402 pF to 1 $\mu$F. Gate source capacitance of the \\
 
-For the simulation to work an initial pulse is required. This requirement was satisfied through defining an initial condition({\tt .ic V(O/P) = 0}) for the {\tt O/P} node using LTSpice XVII's \textit{Spice Directive} feature. The same feature was used  to sweep({\tt .save V(O/P), .step dec param x 1p 1 5}) through different capacitor values.
+For the simulation to work an initial pulse is required. This requirement was satisfied through defining an initial condition({\tt .ic V(Vout) = 0}) for the {\tt Vout} node using LTSpice XVII's \textit{Spice Directive} feature. The same feature was used  to sweep through different gate source capacitor values. ({\tt .save V(Vout), .step dec param x 402p 1u 5})
 
 
 \begin{figure}[H]
