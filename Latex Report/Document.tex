@@ -59,7 +59,7 @@ Following figure illustrates the input output characteristic of an ideal inverte
 	}
 \end{figure}
 
-Whereas the below figure illustrates the input output characteristic of a single stage of a general real inverter. It can be observed that finite amount of time is required for output to be valid for a given valid input. This model has  been used to find the parasitic effect on the oscillation period as it is realistic. For this experiment an NMOS and PMOS models were custom designed and Parameters of those models are as follows.
+Whereas the below figure illustrates the input output characteristic of a single stage of a general real inverter. It can be observed that finite amount of time is required for output to be valid for a given valid input due to the time taken to charge and discharge the internal parasitic capacitors. This model has  been used to find the parasitic effect on the oscillation period as it is realistic. For this experiment an NMOS and PMOS models were custom designed and Parameters of those models are as follows.
 
 {\scriptsize
 \begin{verbatim}
@@ -105,7 +105,11 @@ A genral Ring Oscillator can be implemented using NMOS, PMOS transistors and add
 
 \subsection{Simulation Results and Discussion}
 
-Following ring oscillator schematic has been used to simulate the effect of parasitic capacitance on the period of the output waveform. Simulation was run for $2~\mu s$ time intervals({\tt .tran 2u}) for 18 different gate source capacitor values starting form 402 pF to 1 $\mu$F. Gate source capacitance of the \\
+\textit{\textbf{Note 1:} Only the gate source capacitance were considered for the analysis, as it is what matters the most for the propagation delay of a MOSFET. In addition to that when changing the capacitor values, maximum gate source capacitance was set to be 1 $\mu$F only to clearly illustrate the variation in the oscillation period. The real values are in pF range.}\\
+
+\textit{\textbf{Note 2:} Gate source capacitance of the PMOS transistors' were kept constant and only the NMOS transistors' gate source capacitance were changed as it is sufficient for identifying the effect of parasitic capacitance on the period of oscillation.}\\
+
+Following ring oscillator schematic has been used to simulate the effect of parasitic capacitance on the period of the output waveform. Simulation was run for $2~\mu s$ time intervals({\tt .tran 2u}) for 18 different gate source capacitor values starting form 402 pF to 1 $\mu$F.\\
 
 For the simulation to work an initial pulse is required. This requirement was satisfied through defining an initial condition({\tt .ic V(Vout) = 0}) for the {\tt Vout} node using LTSpice XVII's \textit{Spice Directive} feature. The same feature was used  to sweep through different gate source capacitor values. ({\tt .save V(Vout), .step dec param x 402p 1u 5})
 
@@ -116,8 +120,7 @@ For the simulation to work an initial pulse is required. This requirement was sa
 	\caption{3 stages CMOS Ring Oscillator}
 \end{figure}
 \pagebreak
-When the capacitance of the delay elements are increased as the plot depicts the period of oscillation increases and hence the frequency decreases. Because as mentioned at the beginning the period of oscillation($T$) is affected by $\tau_{d}$, the propagation delay of a single stage which depends on the capacitance of the delay elements.
-
+When the gate source capacitance is increased, as the plot depicts the period of oscillation increases and hence the frequency decreases. Because as mentioned at the beginning the period of oscillation($T$) is affected by $\tau_{d}$, the propagation delay of a single stage which depends on the parasitic capacitance. 
 \[
 Oscillation~frequency = \frac{1}{2.n.\tau_{d}}
 \]
@@ -365,10 +368,10 @@ Results were as below,
 
 We can observe that the PROM is functioning correctly.
 
-\pagebreak
-{\scriptsize
-\bibliographystyle{plain}
-\bibliography{refer}
-}
+%\pagebreak
+%{\scriptsize
+%\bibliographystyle{plain}
+%\bibliography{refer}
+%}
 %---------------------------------------------------------------------------
 \end{document}
