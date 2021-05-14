@@ -25,7 +25,7 @@
 
 	Caldera H. D. J. &  180079X& PLD - Part 1, Part 2\\
 	Oshan J. W. P.    & 180437U& PLD - Part 3 \\
-	Thalagala B.P. & 180631J & Parasitic effect in Timing analysis \\ 
+	Thalagala B.P. & 180631J & Parasitic effect in Timing analysis \\
 
 
 		\end{tabular}
@@ -40,7 +40,7 @@
 \textbf{Objective}: \textit{Design a 3 stage (3 inverters) ring oscillator. Find the correlation of the parasitic effect in the oscillation period.}\\
 
 \subsection{System Design}
-Ring oscillator is a combination of delay stages arranged in series to form a closed loop chain. It consists of an \textbf{\textit{odd number of identical inverters (NOT gates)}} and it produces a  periodically oscillating output. The period of oscillation($T$) of a ring oscillator can be expressed as follows where $n$ is the number of cascaded NOT gates and $\tau_{d}$ is the propagation delay of a single stage.
+Ring oscillator is a combination of delay stages arranged in series to form a closed loop chain. It consists of an \textbf{\textit{odd number of identical inverters (NOT gates)}} and it produces a  periodically oscillating output. The period of oscillation($T$) of a ring oscillator can be expressed as follows where $n$ is the number of cascaded NOT gates and $\tau_{d}$ is the propagation delay of a single stage\cite{rosci}.
 
 \[
 T = 2.n.\tau_{d} \hspace{5mm}\Longrightarrow ~ Oscillation~frequency = \frac{1}{2.n.\tau_{d}}
@@ -63,7 +63,7 @@ Whereas the below figure illustrates the input output characteristic of a single
 
 {\scriptsize
 \begin{verbatim}
-	
+
 	.MODEL CMOSP PMOS KP=96u VTO=0.906 LAMBDA=0.01 TOX=21n GAMMA=0.486 CGDO=54p CGSO=54p CGBO=336p
 	.MODEL CMOSN NMOS KP=96u VTO=0.786 LAMBDA=0.01 TOX=21n GAMMA=0.586 CGDO=402p CGSO=402p CGBO=362p
 \end{verbatim}}
@@ -92,7 +92,7 @@ Basic structure of a ring oscillator can be depicted as follows using logic gate
 		 (not3.in) -- (not2.out)
 		 (not3.out) -- (6,0)
 		 (not1.in) -- (0,0)
-		 (6,0) -- (6,-1.5) -- (0,-1.5) -- (0,0) 
+		 (6,0) -- (6,-1.5) -- (0,-1.5) -- (0,0)
 		 ;
 	\end{circuitikz}
 	\caption{Basic structure of a 3 stage ring oscillator}
@@ -102,16 +102,15 @@ Basic structure of a ring oscillator can be depicted as follows using logic gate
 
 A genral Ring Oscillator can be implemented using NMOS, PMOS transistors and additional delay elements(capacitors). But as the objective is to find the correlation between parasitic effect and oscillation period, the additional delay elements were not used and only the internal capacitance were taken in to account. Each inverter consists of one PMOS and one NMOS named as CMOSP and CMOSN.
 
-
 \subsection{Simulation Results and Discussion}
 
-\textit{\textbf{Note 1:} Only the gate source capacitance were considered for the analysis, as it is what matters the most for the propagation delay of a MOSFET. In addition to that when changing the capacitor values, maximum gate source capacitance was set to be 1 $\mu$F only to clearly illustrate the variation in the oscillation period. The real values are in pF range.}\\
+\textit{\textbf{Note 1:} Only the gate-to source  capacitance were considered for the analysis, as it is what matters the most for the propagation delay of a MOSFET. In addition to that when changing the capacitor values, maximum gate-to source  capacitance was set to be 1 $\mu$F only to clearly illustrate the variation in the oscillation period. The real values are in pF range.}\\
 
-\textit{\textbf{Note 2:} Gate source capacitance of the PMOS transistors' were kept constant and only the NMOS transistors' gate source capacitance were changed as it is sufficient for identifying the effect of parasitic capacitance on the period of oscillation.}\\
+\textit{\textbf{Note 2:} gate-to source  capacitance of the PMOS transistors were kept constant and only the NMOS transistors' gate-to source  capacitance were changed as it is sufficient for identifying the effect of parasitic capacitance on the period of oscillation.}\\
 
-Following ring oscillator schematic has been used to simulate the effect of parasitic capacitance on the period of the output waveform. Simulation was run for $2~\mu s$ time intervals({\tt .tran 2u}) for 18 different gate source capacitor values starting form 402 pF to 1 $\mu$F.\\
+Following ring oscillator schematic has been used to simulate the effect of parasitic capacitance on the period of the output waveform. Simulation was run for $2~\mu s$ time intervals({\tt .tran 2u}) for 18 different gate-to source  capacitor values starting form 402 pF to 1 $\mu$F.\\
 
-For the simulation to work an initial pulse is required. This requirement was satisfied through defining an initial condition({\tt .ic V(Vout) = 0}) for the {\tt Vout} node using LTSpice XVII's \textit{Spice Directive} feature. The same feature was used  to sweep through different gate source capacitor values. ({\tt .save V(Vout), .step dec param x 402p 1u 5})
+For the simulation to work an initial pulse is required. This requirement was satisfied through defining an initial condition({\tt .ic V(Vout) = 0}) for the {\tt Vout} node using LTSpice XVII's \textit{Spice Directive} feature. The same feature was used  to sweep\cite{sweeping} through different gate-to source  capacitor values. ({\tt .save V(Vout), .step dec param x 402p 1u 5})
 
 
 \begin{figure}[H]
@@ -120,7 +119,7 @@ For the simulation to work an initial pulse is required. This requirement was sa
 	\caption{3 stages CMOS Ring Oscillator}
 \end{figure}
 \pagebreak
-When the gate source capacitance is increased, as the plot depicts the period of oscillation increases and hence the frequency decreases. Because as mentioned at the beginning the period of oscillation($T$) is affected by $\tau_{d}$, the propagation delay of a single stage which depends on the parasitic capacitance. 
+When the gate-to source  capacitance is increased, as the plot depicts the period of oscillation increases and hence the frequency decreases. Because as mentioned at the beginning the period of oscillation($T$) is affected by $\tau_{d}$, the propagation delay of a single stage which depends on the parasitic capacitance.
 \[
 Oscillation~frequency = \frac{1}{2.n.\tau_{d}}
 \]
@@ -131,6 +130,15 @@ Oscillation~frequency = \frac{1}{2.n.\tau_{d}}
 	\caption{Waveform for Voltages of 3 stages CMOS Ring Oscillator}
 \end{figure}
 
+\subsection{Cross-section of a MOSFET}
+
+Each MOSFET has 4 terminals called \textit{Body/Substrate (B), Source (S), Gate (G) and Drain (D)}. As following figure depicts the gate terminal is electrically insulated from the substrate semiconductor by a layer of oxide(shown in gray). This Metal-Oxide-Semiconductor structure forms a capacitor which is known as the \textbf{\textit{gate-to source capacitance}} This is what contributes to the propagation delay of the MOSFET and hence to the period of oscillation of the Ring Oscillator.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{figures/Cmos_impurity_profile.png}
+	\caption{Cross-section of a MOSFET\cite{mosfet}}
+\end{figure}
 
 \pagebreak
 \section{PLD}
@@ -395,7 +403,7 @@ PROM is constructed as below\\
 \end{figure}
 
 
-We have used nmos transistors as switches which choose, which minterms are taken into the sum of products.\\ 
+We have used nmos transistors as switches which choose, which minterms are taken into the sum of products.\\
 
 We tested the circuit for different combinational circuits by configuring Si switches. Below we have configured the PROM as a simple NOR gate.\\
 
@@ -422,22 +430,23 @@ One major problem we encountered when designing the PLD was, configuring the pro
 \begin{enumerate}[\hspace{1cm}1.]
 	\item Giving the corresponding signal when the switch is on
 	\item Giving binary 0 at the output, when the switch is off.
-	
+
 \end{enumerate}
 There are two possible ways for achieving this.
 \begin{enumerate}[\hspace{1cm}1.]
 	\item Using a 2 input AND gate with corresponding signal and switch bit as two inputs.
 	\item NMOS transistor used as a pass transistor with, switch bit given to the gate terminal and corresponding signal given to the source terminal.
-	
+
 \end{enumerate}
 Considering the power efficiency and latencies we concluded that using NMOS as a pass transistor is the best way to achieve our goal.
 To achieve the second characteristic we expected, giving binary 0 at the output, when the switch is off, we have connected a large load at the output (drain terminal) of the switch as pull
-down resistor. So, when transistor is at the high impedance state it will be grounded through the resistor achieving binary 0.
+down resistor. So, when transistor is at the high impedance state it will be grounded through the resistor achieving binary 0.\\
+\vfill
 
-%\pagebreak
-%{\scriptsize
-%\bibliographystyle{plain}
-%\bibliography{refer}
-%}
+\hrule
+{
+\bibliographystyle{plain}
+\bibliography{refer}
+}
 %---------------------------------------------------------------------------
 \end{document}
