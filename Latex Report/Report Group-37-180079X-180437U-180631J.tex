@@ -188,18 +188,27 @@ Then the relevant logic expression was obtained using a karnaugh map and it was 
 
 
 
-So, the resultant combinational logic circuit is as follows. (2 NANDs, 2 NORs, 3 NOTs) For the implementation of this circuit; ‘NOT’, ‘NAND’, and 'NOR' gates were designed using 'NMOS' and 'PMOS' transistors. Their schematics in LTspice are depicted below.
+So, the resultant combinational logic circuit is as follows. (2 NANDs, 2 NORs, 3 NOTs)
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{figures/PLD_cct.pdf}
+	\caption{Resultant Combinational Logic Circuit}
+\end{figure}
+
+
+For the implementation of this circuit; ‘NOT’, ‘NAND’, and 'NOR' gates were designed using 'NMOS' and 'PMOS' transistors. Their schematics in LTspice are depicted below.
 
 \begin{figure}[H]
 	\centering
 	\subfigure[Schematic of NOT gate]
-	{ \includegraphics[scale=0.18]{figures/2part1/NOT.pdf}
+	{ \includegraphics[scale=0.22]{figures/2part1/NOT.pdf}
 	}\hfill
 	\subfigure[Schematic of NAND gate]
-	{ \includegraphics[scale=0.18]{figures/2part1/NAND.pdf}
+	{ \includegraphics[scale=0.22]{figures/2part1/NAND.pdf}
 	}\hfill
 	\subfigure[Schematic of NOR gate]
-	{ \includegraphics[scale=0.18]{figures/2part1/NOR.pdf}
+	{ \includegraphics[scale=0.22]{figures/2part1/NOR.pdf}
 	}
 \caption{Basic Gates in the CMOS logic}
 \end{figure}
@@ -226,7 +235,7 @@ Finally, the PLD block is designed using the above gates and the waveforms were 
 	\caption{Waveforms for inputs and output of PLD }
 \end{figure}
 
-\hrule
+\pagebreak
 \subsection{Part 2}
 \textbf{Objective}: \textit{Design a single switch matrix using six pass transistors.}\\
 
@@ -236,7 +245,7 @@ For signal to travel in both directions ( from source to drain and from drain to
 
 So when the switch is on, the input signal will be received at the output. But as we are trying to illustrate a real model, the voltage of the output signal will be somewhat reduced compared with the input signal.\\
 
-For this task, an NMOS model was chosen and the defined parameters are as follows.
+For this task, an NMOS model was chosen and the defined parameters are as follows\cite{data}.
 
 \begin{verbatim}
 L=0.9u W=1.8u
@@ -273,7 +282,7 @@ But it was observed that there is a leakage voltage when the NMOS is at the high
 \end{figure}
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.5]{figures/2part2/without_res_wave.pdf}
+	\includegraphics[scale=0.5]{figures/2part2/small_res_wave.pdf}
 	\caption{Waveform of the second designed pass transistor}
 \end{figure}
 
@@ -444,7 +453,7 @@ down resistor. So, when transistor is at the high impedance state it will be gro
 \vfill
 
 \hrule
-{
+{\scriptsize
 \bibliographystyle{plain}
 \bibliography{refer}
 }
