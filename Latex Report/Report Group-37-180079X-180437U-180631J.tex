@@ -37,10 +37,10 @@
 
 \pagebreak
 \section{Parasitic effect in Timing analysis}
-\textbf{Objective}: \textit{Design a 3 stage (3 inverters) ring oscillator. Find the correlation of the parasitic effect in the oscillation period.}\\
+\textbf{Objective}: \textit{Design a 3 stage (3 inverters) ring oscillator. Find the correlation of the parasitic effect in the oscillation period.}
 
 \subsection{System Design}
-Ring oscillator is a combination of delay stages arranged in series to form a closed loop chain. It consists of an \textbf{\textit{odd number of identical inverters (NOT gates)}} and it produces a  periodically oscillating output. The period of oscillation($T$) of a ring oscillator can be expressed as follows where $n$ is the number of cascaded NOT gates and $\tau_{d}$ is the propagation delay of a single stage\cite{rosci}.
+Ring oscillator is a combination of delay stages arranged in series to form a closed loop chain. It consists of an \textbf{\textit{odd number of identical inverters (NOT gates)}} and it produces a  periodically oscillating output. The period of oscillation($T$) of a ring oscillator can be expressed as follows where $n$ is the number of cascaded NOT gates and $\tau_{d}$ is the propagation delay of a single stage\cite{rosci}. In this case $n = 3$.
 
 \[
 T = 2.n.\tau_{d} \hspace{5mm}\Longrightarrow ~ Oscillation~frequency = \frac{1}{2.n.\tau_{d}}
@@ -59,7 +59,7 @@ Following figure illustrates the input output characteristic of an ideal inverte
 	}
 \end{figure}
 
-Whereas the below figure illustrates the input output characteristic of a single stage of a general real inverter. It can be observed that finite amount of time is required for output to be valid for a given valid input due to the time taken to charge and discharge the internal parasitic capacitors. This model has  been used to find the parasitic effect on the oscillation period as it is realistic. For this experiment an NMOS and PMOS models were custom designed and Parameters of those models are as follows.
+Whereas the below figure illustrates the input output characteristic of a real inverter. It can be observed that finite amount of time is required for output to be valid for a given valid input due to the time taken to charge and discharge the internal parasitic capacitors. This model has  been used to find the parasitic effect on the oscillation period as it is more realistic. For this experiment an NMOS and PMOS models were custom designed and Parameters of those models are as follows.
 
 {\scriptsize
 \begin{verbatim}
@@ -119,9 +119,9 @@ For the simulation to work an initial pulse is required. This requirement was sa
 	\caption{3 stages CMOS Ring Oscillator}
 \end{figure}
 \pagebreak
-When the gate-to source  capacitance is increased, as the plot depicts the period of oscillation increases and hence the frequency decreases. Because as mentioned at the beginning the period of oscillation($T$) is affected by $\tau_{d}$, the propagation delay of a single stage which depends on the parasitic capacitance.
+When the gate-to source  capacitance is increased, as the plot depicts the period of oscillation increases and hence the frequency decreases. Because as mentioned at the beginning, the period of oscillation($T$) is affected by $\tau_{d}$, the propagation delay of a single stage which depends on the parasitic capacitance.
 \[
-Oscillation~frequency = \frac{1}{2.n.\tau_{d}}
+Oscillation~frequency = \frac{1}{6.\tau_{d}}
 \]
 
 \begin{figure}[H]
@@ -132,7 +132,7 @@ Oscillation~frequency = \frac{1}{2.n.\tau_{d}}
 
 \subsection{Cross-section of a MOSFET}
 
-Each MOSFET has 4 terminals called \textit{Body/Substrate (B), Source (S), Gate (G) and Drain (D)}. As following figure depicts the gate terminal is electrically insulated from the substrate semiconductor by a layer of oxide(shown in gray). This Metal-Oxide-Semiconductor structure forms a capacitor which is known as the \textbf{\textit{gate-to source capacitance}} This is what contributes to the propagation delay of the MOSFET and hence to the period of oscillation of the Ring Oscillator.
+Each MOSFET has 4 terminals called \textit{Body/Substrate (B), Source (S), Gate (G) and Drain (D)}. As following figure depicts the gate terminal is electrically insulated from the substrate semiconductor by a layer of oxide(shown in gray). This Metal-Oxide-Semiconductor structure forms a capacitor which is known as the \textbf{\textit{gate-to source capacitance}} This is what contributes to the propagation delay of the MOSFET \textit{\textbf{the most}} and hence to the period of oscillation of the Ring Oscillator.
 
 \begin{figure}[H]
 	\centering
@@ -255,7 +255,7 @@ L=0.9u W=1.8u
 So the initially designed pass transistor and its results were obtained as follows.
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.4]{figures/2part2/without_res_cct.pdf}
+	\includegraphics[scale=0.5]{figures/2part2/without_res_cct.pdf}
 	\caption{Schematic diagram of the first designed pass transistor}
 \end{figure}
 \begin{figure}[H]
@@ -268,7 +268,7 @@ But it was observed that there is a leakage voltage when the NMOS is at the high
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.4]{figures/2part2/small_res_cct.pdf}
+	\includegraphics[scale=0.5]{figures/2part2/small_res_cct.pdf}
 	\caption{Schematic diagram of the second designed pass transistor}
 \end{figure}
 \begin{figure}[H]
@@ -281,7 +281,7 @@ As observed, the 1 k$\Omega$ load resistance was not enough to satisfy the neces
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.4]{figures/2part2/pass_ttr.pdf}
+	\includegraphics[scale=0.5]{figures/2part2/pass_ttr.pdf}
 	\caption{Schematic diagram of the finalized pass transistor}
 \end{figure}
 \begin{figure}[H]
@@ -299,7 +299,7 @@ Then using six such transistors, the single switch matrix was designed and the s
 \end{figure}
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.4]{figures/2part2/block.pdf}
+	\includegraphics[scale=0.5]{figures/2part2/block.pdf}
 	\caption{Designed single switch matrix block}
 \end{figure}
 
@@ -366,7 +366,7 @@ Using this expression we constructed the 3 input AND gates using a minimum numbe
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.6]{figures/Figure332.pdf}
+	\includegraphics[scale=0.7]{figures/Figure332.pdf}
 	\caption{Implementing the three-input AND gate using NOR, NAND, and NOT gates.}
 \end{figure}
 
