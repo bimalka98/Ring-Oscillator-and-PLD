@@ -222,17 +222,64 @@ Finally, the PLD block is designed using the above gates and the waveforms were 
 \subsection{Part 2}
 \textbf{Objective}: \textit{Design a single switch matrix using six pass transistors.}\\
 
-In this part, the single switch matrix is needed to be designed using six pass transistors. So as the first step, a pass transistor was designed and its performance was checked. Simply an 'NMOS' transistor is fed with a switch, could be used for this task. So when the switch is on, the input signal will be received at the output (Threshold voltage is considering as zero since an ideal nmos). Also capacitors were used to ground the high impedance state which occurred when the NMOS is OFF.
+In this part, the single switch matrix is needed to be designed using six pass transistors. So as the first step, a pass transistor was designed and its performance was checked. Simply an NMOS transistor is fed with a switch could be used for this task.\\
+
+For signal to travel in both directions ( from source to drain and from drain to source ) the NMOS has to be symmetric and to have the switch property, both gate-source and gate-drain of the NMOS should be reverse biased. So body terminal needs to be connected as the lowest voltage in the circuit. So we grounded the body terminal.\\
+
+So when the switch is on, the input signal will be received at the output. But as we are trying to illustrate a real model, the voltage of the output signal will be somewhat reduced compared with the input signal.\\
+
+For this task, an NMOS model was chosen and the defined parameters are as follows.
+
+\begin{verbatim}
+L=0.9u W=1.8u
+.MODEL N_1u NMOS LEVEL = 3
++ TOX = 200E-10 NSUB = 1E17 GAMMA = 0.5
++ PHI = 0.7 VTO = 0.8 DELTA = 0.1
++ UO = 650 ETA = 3.0E-6 THETA = 0.1
++ KP = 120E-6 VMAX = 1E5 KAPPA = 0.3
++ RSH = 0 NFS = 1E12 TPG = 1
++ XJ = 500E-9 LD = 100E-9
++ CGDO = 200E-12 CGSO = 200E-12 CGBO = 1E-10
++ CJ = 400E-6 PB = 1 MJ = 0.5
++ CJSW = 300E-12 MJSW = 0.5
+\end{verbatim}
+
+So the initially designed pass transistor and its results were obtained as follows.
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{figures/2part2/without_res_cct.pdf}
+	\caption{Schematic diagram of the first designed pass transistor}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{figures/2part2/without_res_wave.pdf}
+	\caption{Waveform of the first designed pass transistor}
+\end{figure}
+
+But it was observed that there is a leakage voltage when the NMOS is at the high impedance state. So we used a resistor as a load to pull down the output to zero.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{figures/2part2/small_res_cct.pdf}
+	\caption{Schematic diagram of the second designed pass transistor}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{figures/2part2/without_res_wave.pdf}
+	\caption{Waveform of the second designed pass transistor}
+\end{figure}
+
+As observed, the 1 k$\Omega$ load resistance was not enough to satisfy the necessity. So, we used a larger load instead.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.4]{figures/2part2/pass_ttr.pdf}
-	\caption{Schematic diagram of the pass transistor}
+	\caption{Schematic diagram of the finalized pass transistor}
 \end{figure}
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.5]{figures/2part2/pass_wave.pdf}
-	\caption{Waveform of the pass transistor}
+	\caption{Waveform of the finalized pass transistor}
 \end{figure}
 
 Then using six such transistors, the single switch matrix was designed and the schematic diagram of it is shown below.
@@ -275,7 +322,7 @@ Finally the functionality of the circuit was checked by giving pulses to left, r
 \end{figure}
 
 
-\hrule
+\pagebreak
 \subsection{Part 3}
 \textbf{Objective}: \textit{Design a PLD that can be used to design any 3 input
 combinational circuit.}\\
@@ -348,7 +395,7 @@ PROM is constructed as below\\
 \end{figure}
 
 
-We have used nmos transistors as switches which choose, which minterms are taken into the sum of products. We didn’t choose passgates as switches as it increases the complexity and the latency of the circuit.\\ 
+We have used nmos transistors as switches which choose, which minterms are taken into the sum of products.\\ 
 
 We tested the circuit for different combinational circuits by configuring Si switches. Below we have configured the PROM as a simple NOR gate.\\
 
@@ -367,6 +414,25 @@ Results were as below,
 \end{figure}
 
 We can observe that the PROM is functioning correctly.
+
+\subsection{Discussion}
+
+
+One major problem we encountered when designing the PLD was, configuring the programmability of the OR plane. For the programmability we need configurable switches. Each switch decides the corresponding min-term get added to the final expression or not. Expected characteristics of the switches are,
+\begin{enumerate}[\hspace{1cm}1.]
+	\item Giving the corresponding signal when the switch is on
+	\item Giving binary 0 at the output, when the switch is off.
+	
+\end{enumerate}
+There are two possible ways for achieving this.
+\begin{enumerate}[\hspace{1cm}1.]
+	\item Using a 2 input AND gate with corresponding signal and switch bit as two inputs.
+	\item NMOS transistor used as a pass transistor with, switch bit given to the gate terminal and corresponding signal given to the source terminal.
+	
+\end{enumerate}
+Considering the power efficiency and latencies we concluded that using NMOS as a pass transistor is the best way to achieve our goal.
+To achieve the second characteristic we expected, giving binary 0 at the output, when the switch is off, we have connected a large load at the output (drain terminal) of the switch as pull
+down resistor. So, when transistor is at the high impedance state it will be grounded through the resistor achieving binary 0.
 
 %\pagebreak
 %{\scriptsize
