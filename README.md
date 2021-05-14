@@ -1,5 +1,7 @@
 # Electronics3
 
+[Group Number](https://docs.google.com/spreadsheets/d/1BF6KJWATmCnjFtQlzDIJWT8kBennxtkbZCmYQNnlAsY/edit#gid=0)
+
 ## Assignment Description
 
 [09:52, 03/05/2021]
