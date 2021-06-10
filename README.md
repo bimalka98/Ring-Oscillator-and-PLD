@@ -4,7 +4,7 @@
 
 ## Project Outcomes
 
-1. [Project Report](https://nbviewer.jupyter.org/github/bimalka98/Ring-Oscillator-and-PLD/blob/main/Group37_EN2110Assignment/Report%20Group-37-180079X-180437U-180631J.pdf)
+1. [Project Report](https://nbviewer.jupyter.org/github/bimalka98/Ring-Oscillator-and-PLD/blob/main/Latex%20Report/Report%20Group-37-180079X-180437U-180631J.pdf)
 2. [Source Files](Group37_EN2110Assignment)
 
 
